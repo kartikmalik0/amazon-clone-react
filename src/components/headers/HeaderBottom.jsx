@@ -22,10 +22,10 @@ const HeaderBottom = () => {
                   className="px-2 h-[80%] flex items-center  border-transparent hover:border-white cursor-pointer duration-100 flex items-center gap-1" > <MenuIcon /> All</li>
               
 
-              <li className="px-2 h-[80%] flex items-center  border-transparent hover:border-white cursor-pointer duration-100">Today's Deals</li>
-              <li className="px-2 h-[80%] flex items-center  border-transparent hover:border-white cursor-pointer duration-100">Customer service</li>
-              <li className="px-2 h-[80%] flex items-center  border-transparent hover:border-white cursor-pointer duration-100">Gift Cards</li>
-              <li className="px-2 h-[80%] flex items-center  border-transparent hover:border-white cursor-pointer duration-100">Sell</li>
+              <li className="px-2 h-[80%] flex items-center  border-transparent hover:border-white cursor-pointer duration-100 hidden md:inline-flex ">Today's Deals</li>
+              <li className="px-2 h-[80%] flex items-center  border-transparent hover:border-white cursor-pointer duration-100 hidden md:inline-flex ">Customer service</li>
+              <li className="px-2 h-[80%] flex items-center  border-transparent hover:border-white cursor-pointer duration-100 hidden md:inline-flex ">Gift Cards</li>
+              <li className="px-2 h-[80%] flex items-center  border-transparent hover:border-white cursor-pointer duration-100  hidden md:inline-flex">Sell</li>
           </ul>
       {/*Lists Items end here*/}
           {/*sideNav  start here*/}
@@ -34,7 +34,7 @@ const HeaderBottom = () => {
                   <div  className="w-full h-screen text-black fixed top-0 left-0 bg-amazon_blue bg-opacity-50">
                       
                       <div className="w-full h-full relative">
-                          <motion.div ref={ref} initial={{x:-500,opacity:0}} animate={{x:0, opacity:1}} transition={{duration:.5}}  className="w-[350px] h-full bg-white border border-black">
+                          <motion.div ref={ref} initial={{x:-500,opacity:0}} animate={{x:0, opacity:1}} transition={{duration:.5}}  className="w-[80%] md:w-[350px] h-full bg-white border border-black">
                               <div className="w-full bg-amazon_light text-white py-2 px-6 flex items-center gap-4">
                                   <AccountCircleIcon />
                                   <h3 className="font-titleFont font-bold text-lg tracking-wide">Hello , SignIn</h3>
