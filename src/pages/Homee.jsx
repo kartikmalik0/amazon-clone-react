@@ -3,18 +3,14 @@ import Banner from '../components/Home/Banner'
 import Products from '../components/Home/Products'
 
 const Homee = () => {
-    return ( <
-        div >
-        <
-        Banner / >
-        <
-        div className = ' w-full -mt-10 xl:-mt-36 py-10' >
-        <
-        Products / >
-        <
-        /div> <
-        /div>
-    )
+  return (
+    <div>
+      <Banner />
+      <div className=' w-full -mt-10 xl:-mt-36 py-10'>
+      <Products/>
+      </div>
+    </div>
+  )
 }
 
 export default Homee

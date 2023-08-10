@@ -7,14 +7,17 @@ import {
   RouterProvider,
   Outlet,
   Route,
-  
+  ScrollRestoration,
   createRoutesFromElements,
  
 } from "react-router-dom";
+import SignIn from "./pages/SignIn";
+import Cart from "./pages/Cart";
 const Layout = () => {
   return (
     <div>
       <Header />
+      <ScrollRestoration/>
       <Outlet />
       <Footer/>
     </div>
@@ -24,7 +27,9 @@ const App = () => {
   const router = createBrowserRouter(createRoutesFromElements(
    
     <Route path="/" element={<Layout />}>
-    <Route index element={<Homee/>} loader={productsData}></Route>
+      <Route index element={<Homee />} loader={productsData}></Route>
+      <Route path="/signin" element={<SignIn />}></Route>
+      <Route path="/cart" element={<Cart/>}></Route>
     </Route>
       
     
