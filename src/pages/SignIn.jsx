@@ -1,10 +1,16 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import {logo} from "../assets/index"
-import { Link } from 'react-router-dom'
-
+import { Link, useNavigate } from 'react-router-dom'
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { useDispatch } from 'react-redux';
+import { setUserInfo } from '../redux/amazonSlice';
 
 const SignIn = () => {
-
+const auth = getAuth()
+  const dispatch = useDispatch()
+  
+  const navigate = useNavigate()
+  const [errMsg , setErrMsg] = useState('')
   const [email, setEmail] = useState('')
   const [password , setPassword] = useState('')
   const [errEmail, setErrEmail] = useState("")
@@ -38,7 +44,31 @@ const SignIn = () => {
       setErrPassword('Enter your password')
     }
     if (email && password) {
+       
+
+      signInWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+
+    dispatch(setUserInfo({
+      _id: user.uid,
+      userName: user.displayName,
+      email: user.email,
       
+    }))
+
+    setTimeout(() => {
+      navigate('/')
+    }, 2000);
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    setErrMsg('Wrong Email and password')
+  });
+
       setEmail('')
       setPassword('')
     }
@@ -72,6 +102,10 @@ const SignIn = () => {
                   )
               }
               </div>
+              {
+                errMsg &&
+                <p className=' text-red-600'>{errMsg }</p>
+              }
               <button onClick={handleLogin} className=" w-full font-titleFont font-medium text-base bg-gradient-to-tr from-yellow-400 to-yellow-200 hover:from-yellow-300 hover:to-yellow-to-border-yellow-500 hover:border-yellow-700  active:bg-gradient-to-bl active:from-yellow-400 active:to-yellow-500 duration-200 py-1.5 rounded-md mt-3">
                 Continue
               </button>

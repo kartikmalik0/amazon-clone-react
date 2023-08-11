@@ -4,7 +4,10 @@ import {motion} from 'framer-motion'
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { useEffect, useRef, useState } from "react";
 import SideNavContent from "../SideNavContent";
+import { useSelector } from "react-redux";
 const HeaderBottom = () => {
+    const userInfo = useSelector((state) => state.amazon.userInfo)
+
     const ref = useRef()
     const [sidebar, setSidebar] = useState(false)
     useEffect(() => {
@@ -37,7 +40,10 @@ const HeaderBottom = () => {
                           <motion.div ref={ref} initial={{x:-500,opacity:0}} animate={{x:0, opacity:1}} transition={{duration:.5}}  className="w-[80%] md:w-[350px] h-full bg-white border border-black">
                               <div className="w-full bg-amazon_light text-white py-2 px-6 flex items-center gap-4">
                                   <AccountCircleIcon />
-                                  <h3 className="font-titleFont font-bold text-lg tracking-wide">Hello , SignIn</h3>
+                                  {
+                                      userInfo ? <h3 className="font-titleFont font-bold text-lg tracking-wide">Hello , { userInfo.userName}</h3> :
+                                      <h3 className="font-titleFont font-bold text-lg tracking-wide">Hello , SignIn</h3>
+                                  }
                               </div>
                               
                <SideNavContent
